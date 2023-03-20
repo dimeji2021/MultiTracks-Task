@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MultiTracks.API.props" />
+</Project>
