@@ -9,28 +9,36 @@ namespace MultiTracks.API.Controllers
     public class ArtistController : ControllerBase
     {
         private readonly IArtistRepository _repository;
+        private readonly ILogger<ArtistController> _log;
 
-        public ArtistController(IArtistRepository repository)
+        public ArtistController(IArtistRepository repository, ILogger<ArtistController> log)
         {
             _repository = repository;
+            _log = log;
         }
 
-        [HttpGet ("{name}", Name = "GetArtist")]
-        public async Task<IActionResult> Get(string name)
+        [HttpGet("search", Name = "Search")]
+        public async Task<IActionResult> Search(string name)
         {
+            _log.LogInformation("Executing Get Artist by name endpoint");
             var artist = await _repository.GetArtistByNameAsync(name);
             if (artist is not null)
             {
+                _log.LogInformation("Get Artist by name endpoint executed succesfully");
+
                 return Ok(artist);
 
             }
+            _log.LogError("Bad request, error occure while trying to get artist by name.");
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Post(ArtistCreateDto request)
+        [Route("add")]
+        public async Task<IActionResult> Add(ArtistCreateDto request)
         {
+            _log.LogInformation("Executing Add Artist to database");
             await _repository.InsertArtistAsync(request);
-            return CreatedAtRoute("GetArtist", new {name = request.Title},request);
+            return CreatedAtRoute("Search", new { name = request.Title }, request);
         }
     }
 }
