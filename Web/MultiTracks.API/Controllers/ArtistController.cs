@@ -17,7 +17,7 @@ namespace MultiTracks.API.Controllers
             _log = log;
         }
 
-        [HttpGet("search", Name = "Search")]
+        [HttpGet("search/{name}", Name = "search")]
         public async Task<IActionResult> Search(string name)
         {
             _log.LogInformation("Executing Get Artist by name endpoint");
@@ -38,7 +38,7 @@ namespace MultiTracks.API.Controllers
         {
             _log.LogInformation("Executing Add Artist to database");
             await _repository.InsertArtistAsync(request);
-            return CreatedAtRoute("Search", new { name = request.Title }, request);
+            return CreatedAtRoute("search", new { name = request.Title }, request);
         }
     }
 }
