@@ -1,4 +1,6 @@
-﻿namespace MultiTracks.API.Models.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MultiTracks.API.Models.Entities
 {
     public class Album
     {
@@ -10,6 +12,7 @@
 
         //Navigation property
         public int ArtistId { get; set; }
-        //public Artist Artist { get; set; }
+        [ForeignKey("ArtistId")]
+        public Artist Artist { get; set; }
     }
 }

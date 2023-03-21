@@ -18,11 +18,11 @@ namespace MultiTracks.API.Models.Entities
         public DateTime DateCreation { get; set; }
 
         //Navigation property
-        [ForeignKey("ArtistId")]
         public int ArtistId { get; set; }
+        [ForeignKey("ArtistId")]
         public Artist Artist { get; set; }
-        [ForeignKey("AlbumId")]
         public int AlbumId { get; set; }
+        [ForeignKey("AlbumId")]
         public Album Album { get; set; }
 
 
