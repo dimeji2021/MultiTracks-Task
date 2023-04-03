@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MultiTracks.API.Models.Dtos;
 using MultiTracks.API.Infrastructure.IRepositories;
+using MultiTracks.API.Domain.Models.Dtos;
+using MultiTracks.API.Domain.Core.Services.IService;
 
 namespace MultiTracks.API.Controllers
 {
@@ -8,12 +9,12 @@ namespace MultiTracks.API.Controllers
     [ApiController]
     public class ArtistController : ControllerBase
     {
-        private readonly IArtistRepository _repository;
+        private readonly IArtistService _artistService;
         private readonly ILogger<ArtistController> _log;
 
-        public ArtistController(IArtistRepository repository, ILogger<ArtistController> log)
+        public ArtistController(IArtistService artistService, ILogger<ArtistController> log)
         {
-            _repository = repository;
+            _artistService = artistService;
             _log = log;
         }
 
@@ -21,7 +22,7 @@ namespace MultiTracks.API.Controllers
         public async Task<IActionResult> Search(string name)
         {
             _log.LogInformation("Executing Get Artist by name endpoint");
-            var artist = await _repository.GetArtistByNameAsync(name);
+            var artist = await _artistService.GetArtistByNameAsync(name);
             if (artist is not null)
             {
                 _log.LogInformation("Get Artist by name endpoint executed succesfully");
@@ -37,8 +38,8 @@ namespace MultiTracks.API.Controllers
         public async Task<IActionResult> Add(ArtistCreateDto request)
         {
             _log.LogInformation("Executing Add Artist to database");
-            await _repository.InsertArtistAsync(request);
-            return CreatedAtRoute("search", new { name = request.Title }, request);
+            var artist = await _artistService.InsertArtistAsync(request);
+            return CreatedAtRoute("search", new { name = artist.Title }, artist);
         }
     }
 }

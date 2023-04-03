@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiTracks.API.Controllers;
+using MultiTracks.API.Domain.Core.Services.IService;
 using MultiTracks.API.Infrastructure.IRepositories;
 using Serilog;
 
@@ -9,12 +10,12 @@ namespace MultiTracksAPI.Controllers
     [ApiController]
     public class SongController : ControllerBase
     {
-        private readonly ISongRepository _repository;
+        private readonly ISongService _songService;
         private readonly ILogger<SongController> _log;
 
-        public SongController(ISongRepository repository, ILogger<SongController> log)
+        public SongController(ISongService songService, ILogger<SongController> log)
         {
-            _repository = repository;
+            _songService = songService;
             _log = log;
         }
 
@@ -23,7 +24,7 @@ namespace MultiTracksAPI.Controllers
         {
             _log.LogInformation("Executing Get Songs endpoint..............");
 
-            var songs = await _repository.GetAllSongsAsync(pageSize, pageNumber);
+            var songs = await _songService.GetAllSongsAsync(pageSize, pageNumber);
             if (songs is not null)
             {
                 _log.LogInformation("Get Songs Endpoint executed successfully.........");

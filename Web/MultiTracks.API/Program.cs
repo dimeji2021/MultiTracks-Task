@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using MultiTracks.API.Domain.Core.Mapping;
+using MultiTracks.API.Domain.Core.Services;
+using MultiTracks.API.Domain.Core.Services.IService;
+using MultiTracks.API.Domain.Models;
 using MultiTracks.API.Infrastructure;
 using MultiTracks.API.Infrastructure.IRepositories;
 using MultiTracks.API.Infrastructure.Repositories;
-using MultiTracks.API.Mapping;
-using MultiTracks.API.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<ISongService, SongService>();
+
 builder.Services.AddAutoMapper(typeof(Mapping));
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

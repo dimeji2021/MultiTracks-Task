@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MultiTracks.API.Models.Entities;
+using MultiTracks.API.Domain.Models.Entities;
 
 namespace MultiTracks.API.Infrastructure
 {

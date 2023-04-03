@@ -1,4 +1,4 @@
-﻿using MultiTracks.API.Models.Dtos;
+﻿using MultiTracks.API.Domain.Models.Dtos;
 
 namespace MultiTracks.API.Infrastructure.IRepositories
 {

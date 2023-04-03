@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MultiTracks.API.Domain.Models.Dtos;
 using MultiTracks.API.Infrastructure.IRepositories;
-using MultiTracks.API.Models.Dtos;
 
 namespace MultiTracks.API.Infrastructure.Repositories
 {
