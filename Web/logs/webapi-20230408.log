@@ -702,3 +702,89 @@ WHERE (@__ToLower_0 LIKE N'') OR (CHARINDEX(@__ToLower_0, LOWER([a].[Title])) > 
 2023-04-08 16:51:13.028 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/api/Artist/search/jj - -
 2023-04-08 16:51:13.029 +01:00  INF  Request get:/api/artist/search/jj from IP ::1 has been blocked, quota 1/5s exceeded by 3. Blocked by rule *, TraceIdentifier 0HMPO944F3G7O:00000015. MonitorMode: False
 2023-04-08 16:51:13.030 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/api/Artist/search/jj - - - 429 - text/plain 1.2424ms
+2023-04-08 16:55:05.533 +01:00  INF  Application is starting
+2023-04-08 16:55:07.093 +01:00  WRN  No store type was specified for the decimal property 'Bpm' on entity type 'Song'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2023-04-08 16:55:07.352 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-08 16:55:08.611 +01:00  INF  Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-08 16:55:08.700 +01:00  INF  Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-08 16:55:08.704 +01:00  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-08 16:55:08.705 +01:00  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-08 16:55:08.752 +01:00  INF  Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-04-08 16:55:08.789 +01:00  INF  No migrations were applied. The database is already up to date.
+2023-04-08 16:55:09.294 +01:00  INF  Now listening on: https://localhost:7086
+2023-04-08 16:55:09.294 +01:00  INF  Now listening on: http://localhost:5201
+2023-04-08 16:55:09.308 +01:00  INF  Application started. Press Ctrl+C to shut down.
+2023-04-08 16:55:09.308 +01:00  INF  Hosting environment: Development
+2023-04-08 16:55:09.308 +01:00  INF  Content root path: C:\Users\Kehinde Aregbesola\Desktop\interview questions and answers\.net\Web\MultiTracks.API\
+2023-04-08 16:55:10.144 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/index.html - -
+2023-04-08 16:55:10.588 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/index.html - - - 200 - text/html;charset=utf-8 449.5788ms
+2023-04-08 16:55:10.621 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_vs/browserLink - -
+2023-04-08 16:55:10.622 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - -
+2023-04-08 16:55:10.631 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - - - 200 12000 application/javascript;+charset=utf-8 9.0044ms
+2023-04-08 16:55:10.730 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 108.7088ms
+2023-04-08 16:55:10.822 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - -
+2023-04-08 16:55:11.022 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 199.9193ms
+2023-04-08 16:55:20.599 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/api/Artist/search/jj - -
+2023-04-08 16:55:20.672 +01:00  INF  Executing endpoint 'MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API)'
+2023-04-08 16:55:20.701 +01:00  INF  Route matched with {action = "Search", controller = "Artist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String) on controller MultiTracks.API.Controllers.ArtistController (MultiTracks.API).
+2023-04-08 16:55:20.842 +01:00  INF  Executing Get Artist by name endpoint
+2023-04-08 16:55:20.862 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-08 16:55:21.464 +01:00  INF  Executed DbCommand (63ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ArtistId], [a].[Biography], [a].[DateCreation], [a].[HeroUrl], [a].[ImageUrl], [a].[Title]
+FROM [Artist] AS [a]
+WHERE (@__ToLower_0 LIKE N'') OR (CHARINDEX(@__ToLower_0, LOWER([a].[Title])) > 0)
+2023-04-08 16:55:21.606 +01:00  INF  Get Artist by name endpoint executed succesfully
+2023-04-08 16:55:21.611 +01:00  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MultiTracks.API.Domain.Models.Dtos.ArtistGetDto, MultiTracks.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-04-08 16:55:21.629 +01:00  INF  Executed action MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API) in 921.3721ms
+2023-04-08 16:55:21.630 +01:00  INF  Executed endpoint 'MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API)'
+2023-04-08 16:55:21.639 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/api/Artist/search/jj - - - 200 - application/json;+charset=utf-8 1040.1944ms
+2023-04-08 16:55:51.240 +01:00  INF  Application is starting
+2023-04-08 16:55:52.401 +01:00  WRN  No store type was specified for the decimal property 'Bpm' on entity type 'Song'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2023-04-08 16:55:52.572 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-08 16:55:53.089 +01:00  INF  Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-08 16:55:53.138 +01:00  INF  Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-08 16:55:53.141 +01:00  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-08 16:55:53.143 +01:00  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-08 16:55:53.177 +01:00  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-04-08 16:55:53.199 +01:00  INF  No migrations were applied. The database is already up to date.
+2023-04-08 16:55:53.495 +01:00  INF  Now listening on: https://localhost:7086
+2023-04-08 16:55:53.495 +01:00  INF  Now listening on: http://localhost:5201
+2023-04-08 16:55:53.500 +01:00  INF  Application started. Press Ctrl+C to shut down.
+2023-04-08 16:55:53.500 +01:00  INF  Hosting environment: Development
+2023-04-08 16:55:53.500 +01:00  INF  Content root path: C:\Users\Kehinde Aregbesola\Desktop\interview questions and answers\.net\Web\MultiTracks.API\
+2023-04-08 16:55:54.106 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/index.html - -
+2023-04-08 16:55:54.506 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/index.html - - - 200 - text/html;charset=utf-8 409.1092ms
+2023-04-08 16:55:54.520 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - -
+2023-04-08 16:55:54.528 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - - - 200 12000 application/javascript;+charset=utf-8 7.8959ms
+2023-04-08 16:55:54.533 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_vs/browserLink - -
+2023-04-08 16:55:54.650 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 117.0962ms
+2023-04-08 16:55:54.734 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - -
+2023-04-08 16:55:54.913 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 179.2852ms
+2023-04-08 16:56:04.192 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/api/Artist/search/jj - -
+2023-04-08 16:56:04.330 +01:00  INF  Executing endpoint 'MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API)'
+2023-04-08 16:56:04.404 +01:00  INF  Route matched with {action = "Search", controller = "Artist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Search(System.String) on controller MultiTracks.API.Controllers.ArtistController (MultiTracks.API).
+2023-04-08 16:56:04.789 +01:00  INF  Executing Get Artist by name endpoint
+2023-04-08 16:56:04.820 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-08 16:56:06.306 +01:00  INF  Executed DbCommand (153ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ArtistId], [a].[Biography], [a].[DateCreation], [a].[HeroUrl], [a].[ImageUrl], [a].[Title]
+FROM [Artist] AS [a]
+WHERE (@__ToLower_0 LIKE N'') OR (CHARINDEX(@__ToLower_0, LOWER([a].[Title])) > 0)
+2023-04-08 16:56:06.612 +01:00  INF  Get Artist by name endpoint executed succesfully
+2023-04-08 16:56:06.630 +01:00  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MultiTracks.API.Domain.Models.Dtos.ArtistGetDto, MultiTracks.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-04-08 16:56:06.664 +01:00  INF  Executed action MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API) in 2247.0048ms
+2023-04-08 16:56:06.667 +01:00  INF  Executed endpoint 'MultiTracks.API.Controllers.ArtistController.Search (MultiTracks.API)'
+2023-04-08 16:56:06.681 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/api/Artist/search/jj - - - 200 - application/json;+charset=utf-8 2488.5839ms
