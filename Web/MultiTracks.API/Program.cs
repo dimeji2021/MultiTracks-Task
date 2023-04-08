@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using MultiTracks.API.Domain.Core.Mapping;
@@ -16,61 +17,84 @@ var logger = new LoggerConfiguration()
     .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ISongRepository, SongRepository>();
-builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
-builder.Services.AddScoped<IArtistService, ArtistService>();
-builder.Services.AddScoped<ISongService, SongService>();
-
-builder.Services.AddAutoMapper(typeof(Mapping));
-builder.Services.AddDbContext<AppDbContext>(options =>
+try
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-});
-var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<AppDbContext>();
-    context.Database.Migrate();
-}
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-// Exception handling
-app.UseExceptionHandler(error =>
-{
-    error.Run(async context =>
+    // Add services to the container.
+    logger.Information("Application is starting");
+    builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+    builder.Services.AddScoped<ISongRepository, SongRepository>();
+    builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+    builder.Services.AddScoped<IArtistService, ArtistService>();
+    builder.Services.AddScoped<ISongService, SongService>();
+
+    builder.Services.AddAutoMapper(typeof(Mapping));
+    builder.Services.AddDbContext<AppDbContext>(options =>
     {
-        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        context.Response.ContentType = "application/json";
-        var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-        if (contextFeature is not null)
-        {
-            Log.Error($"Something went wrong in the {contextFeature.Error}");
-            await context.Response.WriteAsync(new Error
-            {
-                StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error. Please Try Again Later.",
-
-            }.ToString());
-        }
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
     });
-});
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
-app.MapControllers();
+    builder.Services.AddMemoryCache();
+    builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+    builder.Services.Configure<IpRateLimitPolicies>(builder.Configuration.GetSection("IpRateLimitPolicies"));
+    builder.Services.AddInMemoryRateLimiting();
+    builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
-app.Run();
+
+    var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var context = services.GetRequiredService<AppDbContext>();
+        context.Database.Migrate();
+    }
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+    // Exception handling
+    app.UseExceptionHandler(error =>
+    {
+        error.Run(async context =>
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.ContentType = "application/json";
+            var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+            if (contextFeature is not null)
+            {
+                Log.Error($"Something went wrong in the {contextFeature.Error}");
+                await context.Response.WriteAsync(new Error
+                {
+                    StatusCode = context.Response.StatusCode,
+                    Message = "Internal Server Error. Please Try Again Later.",
+
+                }.ToString());
+            }
+        });
+    });
+
+    app.UseIpRateLimiting();
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+
+    logger.Fatal(ex, "Application fail to start");
+}
+finally
+{
+    logger.Dispose();   
+}
