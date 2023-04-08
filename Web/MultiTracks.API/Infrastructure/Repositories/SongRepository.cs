@@ -16,15 +16,15 @@ namespace MultiTracks.API.Infrastructure.Repositories
             _mapper = mapper;
         }
 
-        public async Task<List<SongDto>> GetAllSongsAsync(int pageSize, int pageNumber)
+        public async Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam)
         {
-            int skip = (pageNumber - 1) * pageSize;
+            int skip = (requestParam.PageNumber - 1) * requestParam.PageSize;
             var songs = await _dbContext.Song
                 .Include(x => x.Artist)
                 .Include(x => x.Album)
                 .OrderBy(x => x.SongId)
                            .Skip(skip)
-                           .Take(pageSize)
+                           .Take(requestParam.PageSize)
                 .ToListAsync();
             return _mapper.Map<List<SongDto>>(songs) ;
 

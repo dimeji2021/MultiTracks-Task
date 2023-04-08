@@ -12,9 +12,9 @@ namespace MultiTracks.API.Domain.Core.Services
         {
             _repository = repository;
         }
-        public async Task<List<SongDto>> GetAllSongsAsync(int pageSize, int pageNumber)
+        public async Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam)
         {
-            return await _repository.GetAllSongsAsync(pageSize, pageNumber);
+            return await _repository.GetAllSongsAsync(requestParam);
         }
     }
 }

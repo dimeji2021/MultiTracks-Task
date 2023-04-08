@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiTracks.API.Controllers;
 using MultiTracks.API.Domain.Core.Services.IService;
+using MultiTracks.API.Domain.Models.Dtos;
 using MultiTracks.API.Infrastructure.IRepositories;
 using Serilog;
 
@@ -20,11 +21,11 @@ namespace MultiTracksAPI.Controllers
         }
 
         [HttpGet, Route("list")]
-        public async Task<IActionResult> Get(int pageSize, int pageNumber)
+        public async Task<IActionResult> Get([FromQuery] RequestParam requestParam)
         {
             _log.LogInformation("Executing Get Songs endpoint..............");
 
-            var songs = await _songService.GetAllSongsAsync(pageSize, pageNumber);
+            var songs = await _songService.GetAllSongsAsync(requestParam);
             if (songs is not null)
             {
                 _log.LogInformation("Get Songs Endpoint executed successfully.........");

@@ -4,6 +4,6 @@ namespace MultiTracks.API.Infrastructure.IRepositories
 {
     public interface ISongRepository
     {
-        Task<List<SongDto>> GetAllSongsAsync(int pageSize, int pageNumber);
+        Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam);
     }
 }

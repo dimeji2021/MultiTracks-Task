@@ -4,6 +4,6 @@ namespace MultiTracks.API.Domain.Core.Services.IService
 {
     public interface ISongService
     {
-        Task<List<SongDto>> GetAllSongsAsync(int pageSize, int pageNumber);
+        Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam);
     }
 }
