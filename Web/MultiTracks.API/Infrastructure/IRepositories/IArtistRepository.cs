@@ -1,10 +1,11 @@
 ﻿using MultiTracks.API.Domain.Models.Dtos;
+using MultiTracks.API.Domain.Models.Entities;
 
 namespace MultiTracks.API.Infrastructure.IRepositories
 {
     public interface IArtistRepository
     {
-        Task<List<ArtistGetDto>> GetArtistByNameAsync(string name);
-        Task<ArtistGetDto> InsertArtistAsync(ArtistCreateDto request);
+        Task<List<Artist>> SearchForArtistAsync(string name);
+        Task<Artist> CreateArtistAsync(Artist artist);
     }
 }

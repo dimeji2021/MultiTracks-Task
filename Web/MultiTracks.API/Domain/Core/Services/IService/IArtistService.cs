@@ -4,7 +4,7 @@ namespace MultiTracks.API.Domain.Core.Services.IService
 {
     public interface IArtistService
     {
-        Task<List<ArtistGetDto>> GetArtistByNameAsync(string name);
-        Task<ArtistGetDto> InsertArtistAsync(ArtistCreateDto request);
+        Task<List<ArtistGetDto>> SearchForArtistAsync(string name);
+        Task<ArtistGetDto> CreateArtistAsync(ArtistCreateDto request);
     }
 }

@@ -1,0 +1,53 @@
+2023-04-17 10:12:05.141 +01:00  INF  Application is starting
+2023-04-17 10:12:06.859 +01:00  WRN  No store type was specified for the decimal property 'Bpm' on entity type 'Song'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2023-04-17 10:12:07.138 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-17 10:12:07.908 +01:00  INF  Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-17 10:12:07.995 +01:00  INF  Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-17 10:12:08.001 +01:00  INF  Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-04-17 10:12:08.003 +01:00  INF  Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-04-17 10:12:08.071 +01:00  INF  Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-04-17 10:12:08.097 +01:00  INF  No migrations were applied. The database is already up to date.
+2023-04-17 10:12:08.505 +01:00  INF  Now listening on: https://localhost:7086
+2023-04-17 10:12:08.505 +01:00  INF  Now listening on: http://localhost:5201
+2023-04-17 10:12:08.510 +01:00  INF  Application started. Press Ctrl+C to shut down.
+2023-04-17 10:12:08.511 +01:00  INF  Hosting environment: Development
+2023-04-17 10:12:08.511 +01:00  INF  Content root path: C:\Users\Kehinde Aregbesola\Desktop\interview questions and answers\.net\Web\MultiTracks.API\
+2023-04-17 10:12:09.348 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/index.html - -
+2023-04-17 10:12:09.917 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/index.html - - - 200 - text/html;charset=utf-8 578.7421ms
+2023-04-17 10:12:09.996 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - -
+2023-04-17 10:12:09.996 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/_vs/browserLink - -
+2023-04-17 10:12:10.008 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_framework/aspnetcore-browser-refresh.js - - - 200 12000 application/javascript;+charset=utf-8 12.2249ms
+2023-04-17 10:12:10.129 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 132.6439ms
+2023-04-17 10:12:10.228 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - -
+2023-04-17 10:12:10.273 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/swagger/favicon-32x32.png - -
+2023-04-17 10:12:10.289 +01:00  INF  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-04-17 10:12:10.290 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/favicon-32x32.png - - - 200 628 image/png 17.1664ms
+2023-04-17 10:12:10.467 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 238.6260ms
+2023-04-17 10:12:44.012 +01:00  INF  Request starting HTTP/2 GET https://localhost:7086/api/Song/list?PageSize=10&PageNumber=2 - -
+2023-04-17 10:12:44.084 +01:00  INF  Executing endpoint 'MultiTracksAPI.Controllers.SongController.Get (MultiTracks.API)'
+2023-04-17 10:12:44.135 +01:00  INF  Route matched with {action = "Get", controller = "Song"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get(MultiTracks.API.Domain.Models.Dtos.RequestParam) on controller MultiTracksAPI.Controllers.SongController (MultiTracks.API).
+2023-04-17 10:12:44.380 +01:00  INF  Executing Get Songs endpoint..............
+2023-04-17 10:12:44.405 +01:00  INF  Entity Framework Core 6.0.15 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.15' with options: None
+2023-04-17 10:12:45.367 +01:00  INF  Executed DbCommand (99ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[SongId], [t].[AlbumId], [t].[ArtistId], [t].[Bpm], [t].[Chart], [t].[CustomMix], [t].[DateCreation], [t].[Multitracks], [t].[Patches], [t].[ProPresenter], [t].[RehearsalMix], [t].[SongSpecificPatches], [t].[TimeSignature], [t].[Title], [a].[ArtistId], [a].[Biography], [a].[DateCreation], [a].[HeroUrl], [a].[ImageUrl], [a].[Title], [a0].[AlbumId], [a0].[ArtistId], [a0].[DateCreation], [a0].[ImageUrl], [a0].[Title], [a0].[Year]
+FROM (
+    SELECT [s].[SongId], [s].[AlbumId], [s].[ArtistId], [s].[Bpm], [s].[Chart], [s].[CustomMix], [s].[DateCreation], [s].[Multitracks], [s].[Patches], [s].[ProPresenter], [s].[RehearsalMix], [s].[SongSpecificPatches], [s].[TimeSignature], [s].[Title]
+    FROM [Song] AS [s]
+    ORDER BY [s].[SongId]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+) AS [t]
+INNER JOIN [Artist] AS [a] ON [t].[ArtistId] = [a].[ArtistId]
+INNER JOIN [Album] AS [a0] ON [t].[AlbumId] = [a0].[AlbumId]
+ORDER BY [t].[SongId]
+2023-04-17 10:12:45.652 +01:00  INF  Get Songs Endpoint executed successfully.........
+2023-04-17 10:12:45.665 +01:00  INF  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MultiTracks.API.Domain.Models.Dtos.SongDto, MultiTracks.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-04-17 10:12:45.702 +01:00  INF  Executed action MultiTracksAPI.Controllers.SongController.Get (MultiTracks.API) in 1556.9432ms
+2023-04-17 10:12:45.704 +01:00  INF  Executed endpoint 'MultiTracksAPI.Controllers.SongController.Get (MultiTracks.API)'
+2023-04-17 10:12:45.725 +01:00  INF  Request finished HTTP/2 GET https://localhost:7086/api/Song/list?PageSize=10&PageNumber=2 - - - 200 - application/json;+charset=utf-8 1712.3301ms

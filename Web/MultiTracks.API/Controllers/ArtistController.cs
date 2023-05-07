@@ -25,7 +25,7 @@ namespace MultiTracks.API.Controllers
         public async Task<IActionResult> Search(string name)
         {
             _log.LogInformation("Executing Get Artist by name endpoint");
-            var artist = await _artistService.GetArtistByNameAsync(name);
+            var artist = await _artistService.SearchForArtistAsync(name);
             if (artist is not null)
             {
                 _log.LogInformation("Get Artist by name endpoint executed succesfully");
@@ -43,7 +43,7 @@ namespace MultiTracks.API.Controllers
         public async Task<IActionResult> Add(ArtistCreateDto request)
         {
             _log.LogInformation("Executing Add Artist to database");
-            var artist = await _artistService.InsertArtistAsync(request);
+            var artist = await _artistService.CreateArtistAsync(request);
             return CreatedAtRoute("search", new { name = artist.Title }, artist);
         }
     }

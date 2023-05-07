@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MultiTracks.API.Domain.Models.Dtos;
+using MultiTracks.API.Domain.Models.Entities;
 using MultiTracks.API.Infrastructure.IRepositories;
 
 namespace MultiTracks.API.Infrastructure.Repositories
@@ -8,15 +9,13 @@ namespace MultiTracks.API.Infrastructure.Repositories
     public class SongRepository : ISongRepository
     {
         private AppDbContext _dbContext;
-        private IMapper _mapper;
 
-        public SongRepository(AppDbContext dbContext, IMapper mapper)
+        public SongRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
-            _mapper = mapper;
         }
 
-        public async Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam)
+        public async Task<List<Song>> GetAllSongsAsync(RequestParam requestParam)
         {
             int skip = (requestParam.PageNumber - 1) * requestParam.PageSize;
             var songs = await _dbContext.Song
@@ -26,8 +25,7 @@ namespace MultiTracks.API.Infrastructure.Repositories
                            .Skip(skip)
                            .Take(requestParam.PageSize)
                 .ToListAsync();
-            return _mapper.Map<List<SongDto>>(songs) ;
-
+            return songs;
         }
     }
 }

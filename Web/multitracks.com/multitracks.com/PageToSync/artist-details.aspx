@@ -49,7 +49,7 @@
                     <nav class="discovery--nav">
                         <ul class="discovery--nav--list tab-filter--list u-no-scrollbar">
                             <li class="discovery--nav--list--item tab-filter--item is-active">
-                                <a class="tab-filter" href="../artists/details.aspx">Overview</a>
+                                <a class="tab-filter" href="#">Overview</a>
                             </li>
                             <li class="discovery--nav--list--item tab-filter--item">
                                 <a class="tab-filter" href="<%# "../PageToSync/artists/songs/details.aspx?id="+Eval("artistID")%>">Songs</a>

@@ -47,9 +47,12 @@
 
                     <nav class="discovery--nav">
                         <ul class="discovery--nav--list tab-filter--list u-no-scrollbar">
-                            <li class="discovery--nav--list--item tab-filter--item is-active">
-                                <a class="tab-filter" href="<%# "../../artist-details.aspx"%>">Home</a>
+                            <li class="discovery--nav--list--item tab-filter--item">
+                                <a class="tab-filter" href="<%# "../../artist-details.aspx"%>">Overview</a>
                             </li>
+                            <li class="discovery--nav--list--item tab-filter--item is-active">
+                                <a class="tab-filter" href="#">Songs</a>
+                            </li>
                             <li class="discovery--nav--list--item tab-filter--item">
                                 <a class="tab-filter" href="<%# "../albums/details.aspx?id="+Eval("artistID")%>">Albums</a>
                             </li>

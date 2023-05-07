@@ -1,9 +1,10 @@
 ﻿using MultiTracks.API.Domain.Models.Dtos;
+using MultiTracks.API.Domain.Models.Entities;
 
 namespace MultiTracks.API.Infrastructure.IRepositories
 {
     public interface ISongRepository
     {
-        Task<List<SongDto>> GetAllSongsAsync(RequestParam requestParam);
+        Task<List<Song>> GetAllSongsAsync(RequestParam requestParam);
     }
 }
